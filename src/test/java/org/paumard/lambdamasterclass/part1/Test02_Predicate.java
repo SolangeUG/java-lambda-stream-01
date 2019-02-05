@@ -15,9 +15,9 @@ public class Test02_Predicate {
      */
     @Test
     public void predicate_1() {
-        Predicate<String> p1 = s -> s.isEmpty();
+        Predicate<String> p1 = String::isEmpty;
 
-        Predicate<String> notPredicate = null; // TODO
+        Predicate<String> notPredicate = p1.negate();
 
         assertThat(notPredicate.test("")).isFalse();
         assertThat(notPredicate.test("Not empty!")).isTrue();
