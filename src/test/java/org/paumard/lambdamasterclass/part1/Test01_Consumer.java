@@ -17,7 +17,7 @@ public class Test01_Consumer {
     @Test
     public void consumer_1() {
 
-        Consumer<List<String>> consumer = null; // TODO
+        Consumer<List<String>> consumer = List::clear;
 
         List<String> list =
                 new ArrayList<>(Arrays.asList("a", "b", "c"));
