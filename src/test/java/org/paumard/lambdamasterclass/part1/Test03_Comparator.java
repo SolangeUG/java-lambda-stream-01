@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.paumard.lambdamasterclass.part1.model.Person;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +28,17 @@ public class Test03_Comparator {
      */
     @Test
     public void comparator_1() {
-        Comparator<Person> cmp = null; // TODO
+        Comparator<Person> cmp = (first, second) -> {
+            if (Objects.isNull(first) && Objects.isNull(second)) return 0;
+            if (Objects.isNull(first)) return 1;
+            if (Objects.isNull(second)) return -1;
+
+            return Comparator
+                    .comparing(Person::getLastName)
+                    .thenComparing(Person::getFirstName)
+                    .thenComparing(Person::getAge)
+                    .compare(first, second) ;
+        };
 
         assertThat(cmp.compare(michael, rod)).isLessThan(0);
         assertThat(cmp.compare(paul, paul)).isEqualTo(0);
