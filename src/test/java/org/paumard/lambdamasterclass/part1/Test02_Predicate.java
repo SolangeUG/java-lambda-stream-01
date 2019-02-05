@@ -53,7 +53,8 @@ public class Test02_Predicate {
         Predicate<String> p1 = s -> s.length() == 4;
         Predicate<String> p2 = s -> s.startsWith("J");
 
-        Predicate<String> p3 = null; // TODO
+        Predicate<String> p3 = p1.negate().and(p2)
+                                .or(p1.and(p2.negate()));
 
         assertThat(p3.test("True")).isTrue();
         assertThat(p3.test("Julia")).isTrue();
