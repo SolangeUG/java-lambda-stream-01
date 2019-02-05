@@ -2,6 +2,7 @@ package org.paumard.lambdamasterclass.part1;
 
 import org.junit.Test;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -31,10 +32,10 @@ public class Test02_Predicate {
      */
     @Test
     public void predicate_2() {
-        Predicate<String> p1 = s -> s != null;
+        Predicate<String> p1 = Objects::nonNull;
         Predicate<String> p2 = s -> !s.isEmpty();
 
-        Predicate<String> p3 = null; // TODO
+        Predicate<String> p3 = p1.and(p2);
 
         assertThat(p3.test("")).isFalse();
         assertThat(p3.test(null)).isFalse();
